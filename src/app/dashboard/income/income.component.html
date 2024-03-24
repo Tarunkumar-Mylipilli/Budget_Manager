@@ -1,0 +1,143 @@
+<div class="content d-flex" style="background-color: #fff0f5; height: 100vh">
+    <div class="container">
+      <div class="row">
+        <app-sidenav class="col-2 colo rounded" style="width: 16%"
+          >HELLO</app-sidenav
+        >
+        <div class="col-10 colo rounded">
+          <h1>Income</h1>
+          <div
+            class="text-center rounded d-flex align-items-center justify-content-center"
+            style="height: 47px; background-color: #ffffff"
+          >
+            <b
+              ><span style="font-weight: bold"
+                >Total expense for {{ selectedMonth }} &nbsp;: &nbsp;</span
+              >
+              {{ totalIncome }}
+            </b>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-3" style="margin-top: 38px">
+              <form [formGroup]="incomeForm" (ngSubmit)="onSubmit()">
+                <div class="form-Group">
+                  <label for="month"><b>Month</b></label>
+                  <select
+                    class="form-control"
+                    formControlName="month"
+                    id="month"
+                    [(ngModel)]="selectedMonth"
+                    (change)="onChangeMonth()"
+                  >
+                    <option value="" disabled>Select Month</option>
+                    <option
+                      *ngFor="let month of service.getMonths()"
+                      [value]="month"
+                    >
+                      {{ month }}
+                    </option>
+                  </select>
+                </div>
+                <br />
+                <div class="form-Group"></div>
+                <div class="form-Group">
+                  <label for="investments"><b>Investments</b></label>
+                  <select
+                    formControlName="investments"
+                    id="investments"
+                    class="form-control"
+                  >
+                    <option value="" disabled>Select Investments</option>
+                    <option value="401(k)">401(k)</option>
+                    <option value="stocks">Stocks</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="HSA">Health-Savings-Account</option>
+                  </select>
+                </div>
+                <div class="form-Group"></div>
+                <div class="form-Group">
+                  <label for="source"><b>Source of Income</b></label>
+                  <select
+                    class="form-control"
+                    formControlName="source"
+                    id="source"
+                  >
+                    <option value="" disabled>Select Source</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Freelancing">Freelancing</option>
+                    <option value="Rental Income">Rental Income</option>
+                  </select>
+                </div>
+  
+                <div class="form-Group"></div>
+                <div class="form-Group">
+                  <label for="amount"><b>Amount:</b></label>
+                  <input
+                    type="number"
+                    formControlName="amount"
+                    id="amount"
+                    class="form-control"
+                    placeholder="Enter Amount"
+                  />
+                </div>
+                <br />
+  
+                <div class="row d-flex">
+                  <button type="submit" class="col-4 btn btn-primary">
+                    <i class="bi bi-plus-circle-dotted"></i> Add
+                  </button>
+                  <div class="col-2"></div>
+                  <button class="col-5 btn btn-primary" (click)="goBack()">
+                    <i class="bi bi-arrow-left"></i> Back
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="col-9">
+              <div>
+                <h2 class="text-center">
+                  List of incomess for {{ selectedMonth }}
+                </h2>
+                <div class="table-wrapper">
+                  <div
+                    class="mb-3 rounded"
+                    style="
+                      background-color: #ffffff;
+                      border: 2px solid #ffffff;
+                      box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+                    "
+                    *ngFor="let income of incomes; let i = index"
+                  >
+                    <li>
+                      <b>{{ income.source }}</b>
+                    </li>
+  
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <b><i class="bi bi-currency-rupee"></i></b>
+                        {{ income.amount }} &nbsp; <b>|</b> &nbsp;
+                        <b><i class="bi bi-calendar-event-fill"></i></b>
+                        {{ income.month }} &nbsp; <b>|</b> &nbsp;
+                        <b><i class="bi bi-bank"></i></b>
+                        {{ income.investments }} &nbsp;
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm" (click)="editIncome(i)">
+                          <i class="bi bi-pencil-square"></i>
+                        </button>
+                        <button class="btn btn-sm" (click)="deleteIncome(i)">
+                          X
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

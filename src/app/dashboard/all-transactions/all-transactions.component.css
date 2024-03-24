@@ -1,0 +1,10 @@
+.row{
+    display: flex;
+    justify-content: space-between;
+}
+.colo{
+    margin-top: 41px;
+     background-color: #F9F6EE;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+  }

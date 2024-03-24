@@ -1,0 +1,123 @@
+
+<div class="bg-secondary">
+    <div class="container ">
+                              <!-- Registraion Form  -->
+  <form class="border p-3 bg-light rounded" *ngIf="activeForm === 'register'" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="row g-0">
+      <div class="col text-center p-2 mb-3 bg-light">
+        <span class="fs-3">Register</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="firstname" class="form-label">First Name</label>
+        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('firstName').invalid && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched) }" />
+        <div class="invalid-feedback" *ngIf="registerForm.get('firstName').invalid && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)">
+          First Name is required
+        </div>
+      </div>
+      <div class="col">
+        <label for="lastname" class="form-label">Last Name</label>
+        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('lastName').invalid && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched) }" />
+        <div class="invalid-feedback" *ngIf="registerForm.get('lastName').invalid && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)">
+          Last Name is required
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{ 'is-invalid': registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched) }" />
+        <div class="invalid-feedback" *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+          <span *ngIf="registerForm.get('email').errors?.required">Email is required</span>
+          <span *ngIf="registerForm.get('email').errors?.email">Invalid email format</span>
+          <span *ngIf="registerForm.get('email').errors?.invalidEmail">Email must end with  gmail.com</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label for="mobile" class="form-label">Mobile Number</label>
+        <input type="text" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('mobile').invalid && (registerForm.get('mobile').dirty || registerForm.get('mobile').touched) }" />
+        <div class="invalid-feedback" *ngIf="registerForm.get('mobile').invalid && (registerForm.get('mobile').dirty || registerForm.get('mobile').touched)">
+          <span *ngIf="registerForm.get('mobile').errors?.required">Mobile Number is required</span>
+          <span *ngIf="registerForm.get('mobile').errors?.pattern">Mobile Number must be 10 digits</span>
+        </div>
+      </div>
+      <div class="col ps-3 mb-3">
+        <div class="m-1">Gender</div>
+        <div class="form-check form-check-inline">
+          <input type="radio" id="male" formControlName="gender" value="male" />
+          <label for="male">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" id="female" formControlName="gender" value="female" />
+          <label for="female">Female</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched) }" />
+        <div class="invalid-feedback" *ngIf="registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+          <span *ngIf="registerForm.get('password').errors?.required">Password is required</span>
+          <span *ngIf="registerForm.get('password').errors?.minlength">Password must be at least 6 characters</span>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <label for="repeatPassword" class="form-label">Repeat Password</label>
+        <input type="password" formControlName="repeatPassword" class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('repeatPassword').invalid && (registerForm.get('repeatPassword').dirty || registerForm.get('repeatPassword').touched) }" />
+        <div class="invalid-feedback" *ngIf="registerForm.get('repeatPassword').invalid && (registerForm.get('repeatPassword').dirty || registerForm.get('repeatPassword').touched)">
+          <span *ngIf="registerForm.get('repeatPassword').errors?.required">Repeat Password is required</span>
+          <span *ngIf="registerForm.hasError('passwordMismatch')">Passwords must match</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-3">
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <p class="mt-3"(click)="toggleForm('login')" style="cursor: pointer;">Already have an account
+            <span class="text-info">Login</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+                                           <!-- Login form  -->
+      <form class="border p-3 bg-light rounded" *ngIf="activeForm === 'login'" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="row g-0">
+          <div class="col text-center p-2 mb-3 bg-muted">
+            <span class="fs-3 ">Login</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" formControlName="email" />
+            <div class="form-text"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" formControlName="password" />
+            <div class="form-text"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 offset-3">
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Login</button>
+              <p class="mt-3"(click)="toggleForm('register')" style="cursor: pointer;">Don't have an account
+                <span class="text-info">Register</span>
+            </p>
+            </div>
+          </div>
+        </div>
+      </form> 
+  </div>
+  </div>
+  

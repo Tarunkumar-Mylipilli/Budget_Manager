@@ -1,0 +1,26 @@
+.table-wrapper {
+    height: 374px; /* Adjust the height as needed */
+    overflow-y: auto;
+  }
+  .table-wrapper::-webkit-scrollbar{
+    width: 0;
+  }
+  table{
+    border-collapse: separate;
+    border-spacing: 0.1rem;
+  }
+  .row{
+    display: flex;
+    justify-content: space-between;
+}
+button{
+  height: 37px;
+}
+.colo{
+  margin-top: 41px;
+   background-color: #F9F6EE;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+}
+  
+  

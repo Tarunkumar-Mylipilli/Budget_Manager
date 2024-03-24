@@ -1,0 +1,41 @@
+<div class="content d-flex" style="background-color: #FFF0F5; height: 100vh;">
+    <div class="container">
+      <div class="row">
+        <app-sidenav class="col-2 colo rounded " style="width: 16%;">HELLO</app-sidenav>
+          <div class="col-10 colo rounded" >
+            <h4>Todo`s</h4>
+            <div class="text-center  rounded d-flex align-items-center justify-content-center" style="height: 50px; background-color: #FFFFFF;">
+              <b>Your`s Todo List</b>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center" style="margin-top: 21px;">
+              <div class="col" *ngFor="let todo of todoItems">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                  <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">{{ todo.title }}</h4>
+                  </div>
+                  
+                  <div class="card-body">
+                    <p class="card-text">{{ todo.description }}</p>
+                    <button class="btn  btn-sm" ><i class="bi bi-pencil-square"></i></button>
+                    <button class="btn  btn-sm" >X</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                  <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Add</h4>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">Click here to add a new item.</p>
+                    <button type="button" class="w-100 btn btn-lg btn-success">Add New</button>
+                  </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+    
