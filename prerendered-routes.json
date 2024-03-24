@@ -1,0 +1,12 @@
+{
+  "routes": [
+    "/dashboard",
+    "/dashboard/add-budget",
+    "/dashboard/all-transactions",
+    "/dashboard/expense",
+    "/dashboard/income",
+    "/dashboard/login",
+    "/dashboard/side-nav",
+    "/dashboard/todo-transactions"
+  ]
+}
